@@ -1,7 +1,15 @@
+const game = new Game();
+
+function preload() {
+  game.preload();
+}
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(352, 198);
+  noSmooth();
 }
 
 function draw() {
-  background(220);
+  console.log("It's working");
+  game.draw();
 }

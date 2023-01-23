@@ -1,8 +1,18 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 canvas {
   display: block;
+  transform: scale(3);
+  image-rendering: pixelated;
 }
