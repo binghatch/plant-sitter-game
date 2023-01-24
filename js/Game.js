@@ -23,7 +23,8 @@ class Game {
         // Update game object position
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
-                arrow: this.userInput.direction
+                arrow: this.userInput.direction,
+                map: this.map
             });
         })
 
@@ -35,7 +36,7 @@ class Game {
             object.sprite.draw(this.cameraPerson);
         })
 
-        // Draw upper map
+        // Draw upper map   
         this.map.drawUpperImage(this.cameraPerson);
     }
 }

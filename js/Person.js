@@ -1,7 +1,7 @@
 class Person extends GameObject {
     constructor(config) {
         super(config),
-        this.movingProgressRemaining = 16;
+        this.movingProgressRemaining = 0;
 
         this.directionUpdate = {
             "up": ["y", -1],
@@ -12,11 +12,16 @@ class Person extends GameObject {
     }
 
     update(state) {
-        if (state.arrow && this.movingProgressRemaining === 0) {
+        // Check if next space is taken
+        if (state.map.isSpaceTaken(this.x, this.y, state.arrow)) {
+            console.log("TAKEN");
+        }
+
+        if (state.arrow && this.movingProgressRemaining === 0 && !state.map.isSpaceTaken(this.x, this.y, state.arrow)) {
             this.direction = state.arrow;
-            console.log(this.direction);
             this.movingProgressRemaining = 16;
         }
+        
         this.updateSprite();
         this.updatePosition();
     }
@@ -26,8 +31,6 @@ class Person extends GameObject {
             const [axis, change] = this.directionUpdate[this.direction];
             this[axis] += change;
             this.movingProgressRemaining--;
-        } else {
-
         }
     }
 
