@@ -2,6 +2,7 @@ class Game {
     constructor(config) {
         this.map = new GameMap(window.GameMaps.Office);
         this.userInput;
+        this.cameraPerson = this.map.gameObjects.hero;
     }
 
     preload() {
@@ -18,13 +19,23 @@ class Game {
 
     draw() {
         clear();
-        this.map.drawLowerImage();
+
+        // Update game object position
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
                 arrow: this.userInput.direction
             });
-            object.sprite.draw();
         })
-        this.map.drawUpperImage();
+
+        // Draw lower map
+        this.map.drawLowerImage(this.cameraPerson);
+
+        // Draw game objects
+        Object.values(this.map.gameObjects).forEach(object => {
+            object.sprite.draw(this.cameraPerson);
+        })
+
+        // Draw upper map
+        this.map.drawUpperImage(this.cameraPerson);
     }
 }

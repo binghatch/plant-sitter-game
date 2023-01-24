@@ -38,7 +38,7 @@ class Sprite {
         },
         this.currentAnimation = config.currentAnimation || "idleRight",
         this.currentAnimationFrame = 0,
-        this.animationSpeed = 7;
+        this.animationSpeed = 10;
 
         this.gameObject = config.gameObject
     }
@@ -51,9 +51,9 @@ class Sprite {
         }
     }
 
-    draw() {
-        const x = this.gameObject.x;
-        const y = this.gameObject.y;
+    draw(cameraPerson) {
+        const x = this.gameObject.x + utils.withGrid(11) - cameraPerson.x;
+        const y = this.gameObject.y + utils.withGrid(6) - cameraPerson.y;
 
         // Draw Shadow
         if (this.useShadow) {
@@ -72,7 +72,7 @@ class Sprite {
         }
         
         // Reset Animation
-        if (this.currentAnimationFrame === animationFrames.length - 1) {
+        if (this.currentAnimationFrame === animationFrames.length) {
             this.currentAnimationFrame = 0;
         }
     }

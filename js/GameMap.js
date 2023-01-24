@@ -14,12 +14,12 @@ class GameMap {
         this.upperImage = loadImage(this.upperSrc);
     }
 
-    drawLowerImage() {
-        image(this.lowerImage, 0, 0);
+    drawLowerImage(cameraPerson) {
+        image(this.lowerImage, utils.withGrid(10) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
     }
 
-    drawUpperImage() {
-        image(this.upperImage, 0, 0);
+    drawUpperImage(cameraPerson) {
+        image(this.upperImage, utils.withGrid(10) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
     }
 }
 
