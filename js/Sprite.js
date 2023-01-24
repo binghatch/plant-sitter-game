@@ -22,11 +22,23 @@ class Sprite {
             ],
             idleDown: [
                 [0, 3], [1, 3], [2, 3], [3, 3], [4, 3], [5, 3]
+            ],
+            runRight: [
+                [0, 4], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4]
+            ],
+            runUp: [
+                [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]
+            ],
+            runLeft: [
+                [0, 6], [1, 6], [2, 6], [3, 6], [4, 6], [5, 6]
+            ],
+            runDown: [
+                [0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7]
             ]
         },
-        this.currentAnimation = config.currentAnimation || "idleDown",
+        this.currentAnimation = config.currentAnimation || "idleRight",
         this.currentAnimationFrame = 0,
-        this.animationSpeed = 10;
+        this.animationSpeed = 7;
 
         this.gameObject = config.gameObject
     }
@@ -51,7 +63,7 @@ class Sprite {
         // Animate Sprite
         const animationFrames = this.animations[this.currentAnimation];
         const [frameX, frameY] = animationFrames[this.currentAnimationFrame];
-        const frame = this.image.get(animationFrames[frameX][0] * 32, animationFrames[frameY][1] * 32, 32, 32);
+        const frame = this.image.get(frameX * 32, frameY * 32, 32, 32);
         image(frame, x - 8, y - 18);
 
         // Set Animation Speed
@@ -63,9 +75,5 @@ class Sprite {
         if (this.currentAnimationFrame === animationFrames.length - 1) {
             this.currentAnimationFrame = 0;
         }
-
-        // const crop = this.image.get(0, 0, 32, 32);
-
-        // image(crop, x - 8, y - 18);
     }
 }

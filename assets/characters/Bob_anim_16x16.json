@@ -1,0 +1,435 @@
+{
+    "frames": [{
+        "name": "idleRight-00",
+        "position": {
+            "x": 0,
+            "y": 0 ,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleRight-01",
+        "position": {
+            "x": 32,
+            "y": 0,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleRight-02",
+        "position": {
+            "x": 64,
+            "y": 0,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleRight-03",
+        "position": {
+            "x": 96,
+            "y": 0,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "idleRight-04",
+        "position": {
+            "x": 128,
+            "y": 0,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleRight-05",
+        "position": {
+            "x": 160,
+            "y": 0,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleUp-00",
+        "position": {
+            "x": 0,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleUp-01",
+        "position": {
+            "x": 32,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleUp-02",
+        "position": {
+            "x": 64,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleUp-03",
+        "position": {
+            "x": 96,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "idleUp-04",
+        "position": {
+            "x": 128,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleUp-05",
+        "position": {
+            "x": 160,
+            "y": 32,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleLeft-00",
+        "position": {
+            "x": 0,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleLeft-01",
+        "position": {
+            "x": 32,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleLeft-02",
+        "position": {
+            "x": 64,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleLeft-03",
+        "position": {
+            "x": 96,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "idleLeft-04",
+        "position": {
+            "x": 128,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleLeft-05",
+        "position": {
+            "x": 160,
+            "y": 64,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleDown-00",
+        "position": {
+            "x": 0,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleDown-01",
+        "position": {
+            "x": 32,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleDown-02",
+        "position": {
+            "x": 64,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleDown-03",
+        "position": {
+            "x": 96,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "idleDown-04",
+        "position": {
+            "x": 128,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "idleDown-05",
+        "position": {
+            "x": 160,
+            "y": 96,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runRight-00",
+        "position": {
+            "x": 0,
+            "y": 128 ,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runRight-01",
+        "position": {
+            "x": 32,
+            "y": 128,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runRight-02",
+        "position": {
+            "x": 64,
+            "y": 128,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runRight-03",
+        "position": {
+            "x": 96,
+            "y": 128,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "runRight-04",
+        "position": {
+            "x": 128,
+            "y": 128,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runRight-05",
+        "position": {
+            "x": 160,
+            "y": 128,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runUp-00",
+        "position": {
+            "x": 0,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runUp-01",
+        "position": {
+            "x": 32,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runUp-02",
+        "position": {
+            "x": 64,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runUp-03",
+        "position": {
+            "x": 96,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "runUp-04",
+        "position": {
+            "x": 128,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runUp-05",
+        "position": {
+            "x": 160,
+            "y": 160,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runLeft-00",
+        "position": {
+            "x": 0,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runLeft-01",
+        "position": {
+            "x": 32,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runLeft-02",
+        "position": {
+            "x": 64,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runLeft-03",
+        "position": {
+            "x": 96,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "runLeft-04",
+        "position": {
+            "x": 128,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runLeft-05",
+        "position": {
+            "x": 160,
+            "y": 192,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runDown-00",
+        "position": {
+            "x": 0,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runDown-01",
+        "position": {
+            "x": 32,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runDown-02",
+        "position": {
+            "x": 64,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runDown-03",
+        "position": {
+            "x": 96,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    },  
+    {
+        "name": "runDown-04",
+        "position": {
+            "x": 128,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    },
+    {
+        "name": "runDown-05",
+        "position": {
+            "x": 160,
+            "y": 224,
+            "w": 32,
+            "h": 32
+        }
+    }
+]
+}

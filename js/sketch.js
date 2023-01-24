@@ -7,9 +7,17 @@ function preload() {
 function setup() {
   createCanvas(352, 198);
   noSmooth();
+  game.setup();
 }
 
 function draw() {
-  console.log("It's working");
   game.draw();
+}
+
+function keyPressed() {
+  game.userInput.keyPressed(keyCode);
+}
+
+function keyReleased() {
+  game.userInput.keyReleased(keyCode);
 }

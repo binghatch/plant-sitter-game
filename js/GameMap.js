@@ -32,8 +32,8 @@ window.GameMaps = {
                 x: utils.withGrid(2),
                 y: utils.withGrid(4),
                 sprite: {
-                    spriteSheet: "../assets/characters/Bob_idle_anim_16x16.png",
-                    spriteData: "../assets/characters/Bob_idle_anim_16x16.json"
+                    spriteSheet: "../assets/characters/Bob_anim_16x16.png",
+                    spriteData: "../assets/characters/Bob_anim_16x16.json"
                 },
                 useShadow: true
             })
