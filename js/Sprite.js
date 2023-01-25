@@ -3,7 +3,11 @@ class Sprite {
         // Spritesheet Data and Image
         this.spriteSheet = config.spriteSheet,
         this.spriteData = config.spriteData,
-        this.image = null,
+        this.image,
+
+        // Sprite Offset
+        this.offsetX = config.offsetX,
+        this.offsetY = config.offsetY,
 
         // Shadow
         this.shadow = null,
@@ -45,26 +49,39 @@ class Sprite {
 
     preload() {
         this.image = loadImage(this.spriteSheet);
+        this.spriteData = loadJSON(this.spriteData);
 
         if (this.useShadow) {
             this.shadow = loadImage("../assets/characters/shadow.png");
         }
     }
 
-    draw(cameraPerson) {
+    draw(cameraPerson, layer) {
         const x = this.gameObject.x + utils.withGrid(11) - cameraPerson.x;
         const y = this.gameObject.y + utils.withGrid(6) - cameraPerson.y;
 
         // Draw Shadow
         if (this.useShadow) {
-            image(this.shadow, x - 8, y - 19);
+            image(this.shadow, x - this.offsetX, y - this.offsetY);
         }
 
         // Animate Sprite
-        const animationFrames = this.animations[this.currentAnimation];
-        const [frameX, frameY] = animationFrames[this.currentAnimationFrame];
-        const frame = this.image.get(frameX * 32, frameY * 32, 32, 32);
-        image(frame, x - 8, y - 18);
+        const frames = this.spriteData[this.currentAnimation];
+        let frame;
+        
+        // Get coordinate set that corresponds to right layer
+        if (layer) {
+            frame = frames[this.currentAnimationFrame][layer];
+        } else {
+            frame = frames[this.currentAnimationFrame];
+        }
+        const currentImage = this.image.get(utils.withGrid(frame.x), utils.withGrid(frame.y), frame.w, frame.h);
+
+        // If layer is lower layer, get height of upper layer and offset y by upper layer's height
+        let layerOffset;
+        (layer === "lower") ? layerOffset = frames[this.currentAnimationFrame]["upper"].h : layerOffset = 0;  
+        
+        image(currentImage, x - this.offsetX, y - this.offsetY + layerOffset);
 
         // Set Animation Speed
         if (frameCount % this.animationSpeed === 0) {
@@ -72,7 +89,7 @@ class Sprite {
         }
         
         // Reset Animation
-        if (this.currentAnimationFrame === animationFrames.length) {
+        if (this.currentAnimationFrame === frames.length) {
             this.currentAnimationFrame = 0;
         }
     }

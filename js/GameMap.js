@@ -3,6 +3,7 @@ class GameMap {
         this.gameObjects = config.gameObjects,
 
         this.walls = config.walls,
+        this.interactions = config.interactions,
 
         this.lowerSrc = config.lowerSrc,
         this.lowerImage = null,
@@ -26,8 +27,40 @@ class GameMap {
 
     isSpaceTaken(currentX, currentY, direction) {
         const {x, y} = utils.nextPosition(currentX, currentY, direction);
-        return (this.walls[`${x}, ${y}`]) || false;
+        return (this.walls[utils.asGridCoord(x, y)]) || false;
     }
+
+    isInteractiveTile(currentX, currentY) {
+        return (utils.asGridCoord(currentX, currentY) in this.interactions) || false;
+    }
+
+    mountObjects() {
+        Object.values(this.gameObjects).forEach(object => {
+            object.mount(this);
+        })
+    }
+
+    addWall(x, y) {
+        this.walls[`${x}, ${y}`] = true;
+    }
+
+    removeWall(x, y) {
+        delete this.walls[`${x}, ${y}`];
+    }
+
+    addInteraction(interaction) {
+        const {relativeX, relativeY} = utils.relativePosition(interaction.x, interaction.y, interaction.gameObject);
+        console.log(relativeX);
+        this.interactions[utils.asGridCoord(utils.pixelsToCoord(relativeX), utils.pixelsToCoord(relativeY))] = {
+            type: interaction.type,
+            interaction: interaction,
+            gameObject: interaction.gameObject
+        }
+    }
+
+    removeInteraction(interaction) {
+        delete this.interactions[utils.asGridCoord(interaction.x, interaction.y)];
+    }  
 }
 
 window.GameMaps = {
@@ -35,15 +68,45 @@ window.GameMaps = {
         lowerSrc: "../assets/maps/office-lower.png",
         upperSrc: "../assets/maps/office-upper.png",
         gameObjects: {
+            vendingMachine: new UsableObject({
+                x: utils.withGrid(11),
+                y: utils.withGrid(5),
+                sprite: {
+                    spriteSheet: "../assets/objects/vending_machine_32x48.png",
+                    spriteData: "../assets/objects/vending_machine_32x48.json",
+                    useShadow: false
+                },
+                interaction: {
+                        x: utils.withGrid(1),
+                        y: utils.withGrid(2),
+                        type: "activate"
+                    },
+                walls: [
+                    {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(1)
+                    },
+                    {
+                        x: utils.withGrid(1),
+                        y: utils.withGrid(1)
+                    }
+                ]
+            }),
             hero: new Person({
                 x: utils.withGrid(2),
                 y: utils.withGrid(4),
                 sprite: {
-                    spriteSheet: "../assets/characters/Bob_anim_16x16.png",
-                    spriteData: "../assets/characters/Bob_anim_16x16.json"
+                    spriteSheet: "../assets/characters/Bob_anim_32x32.png",
+                    spriteData: "../assets/characters/Bob_anim_32x32.json",
+                    useShadow: true,
+                    offsetX: 8,
+                    offsetY: 18
                 },
-                useShadow: true
+                isPlayerControlled: true
             })
+        },
+        interactions: {
+
         },
         walls: {
             // Outer Walls

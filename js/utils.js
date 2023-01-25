@@ -2,8 +2,16 @@ const utils = {
     withGrid(n) {
         return n * 16;
     },
-    toGrid(n) {
-
+    pixelsToCoord(n) {
+        return n / 16;
+    },
+    asGridCoord(x, y) {
+        return `${x}, ${y}`;
+    },
+    relativePosition(x, y, gameObject) {
+        const relativeX = gameObject.x + x;
+        const relativeY = gameObject.y + y;
+        return {relativeX, relativeY};
     },
     nextPosition(initialX, initialY, direction) {
         let x = initialX;

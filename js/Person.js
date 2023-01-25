@@ -1,7 +1,7 @@
 class Person extends GameObject {
     constructor(config) {
         super(config),
-        this.movingProgressRemaining = 0;
+        this.movingProgressRemaining = 0,
 
         this.directionUpdate = {
             "up": ["y", -1],
@@ -12,11 +12,6 @@ class Person extends GameObject {
     }
 
     update(state) {
-        // Check if next space is taken
-        if (state.map.isSpaceTaken(this.x, this.y, state.arrow)) {
-            console.log("TAKEN");
-        }
-
         if (state.arrow && this.movingProgressRemaining === 0 && !state.map.isSpaceTaken(this.x, this.y, state.arrow)) {
             this.direction = state.arrow;
             this.movingProgressRemaining = 16;
@@ -25,6 +20,7 @@ class Person extends GameObject {
         this.updateSprite();
         this.updatePosition();
     }
+
 
     updatePosition() {
         if (this.movingProgressRemaining > 0) {
@@ -40,6 +36,15 @@ class Person extends GameObject {
             console.log(this.sprite.currentAnimation);
         } else if (this.movingProgressRemaining === 0) {
             this.sprite.currentAnimation = "idle" + this.direction[0].toUpperCase() + this.direction.substring(1);
+        }
+    }
+
+    trigger(state) {
+        // Trigger UI Drawing
+        if (this.movingProgressRemaining === 0 && state.map.isInteractiveTile(utils.pixelsToCoord(this.x), utils.pixelsToCoord(this.y))) {
+            const x = utils.pixelsToCoord(this.x);
+            const y = utils.pixelsToCoord(this.y);
+            state.map.interactions[utils.asGridCoord(x, y)].interaction.activate(state);
         }
     }
 }
