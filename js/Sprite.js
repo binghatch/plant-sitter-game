@@ -57,6 +57,10 @@ class Sprite {
         }
     }
 
+    update() {
+        console.log("updating")
+    }
+
     draw(cameraPerson, layer) {
         if (!this.isVisible) {
             return;

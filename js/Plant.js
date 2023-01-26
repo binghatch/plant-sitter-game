@@ -52,6 +52,7 @@ class Plant extends UsableObject {
             // this.sprite.currentAnimationFrame = this.thirst;
         }
 
+        this.sprite.update();
     }
 
     decay() {

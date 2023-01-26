@@ -37,7 +37,7 @@ class GameObject {
     }
 
     update() {
-        
+        this.sprite.update();
     }
 
 }

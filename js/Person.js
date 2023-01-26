@@ -43,6 +43,7 @@ class Person extends GameObject {
             this[axis] += change;
             this.movingProgressRemaining--;
         }
+        this.sprite.update();
     }
 
     updateSprite() {
