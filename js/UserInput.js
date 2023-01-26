@@ -9,7 +9,8 @@ class UserInput {
                 39: "right"
             },
             "interactional": {
-                87: "water"
+                87: "water",
+                68: "dispense"
             }
         },
         this.interactionTyped;

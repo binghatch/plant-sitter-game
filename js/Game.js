@@ -13,22 +13,29 @@ class Game {
                 object.interaction.preload();
             }
         })
+        Object.values(this.map.uiElements).forEach(element => {
+            element.preload();
+        })
     }
 
     setup() {
         this.userInput = new UserInput()
-        console.log(this.userInput);
         this.map.mountObjects();
     }
 
     draw() {
         clear();
 
-        // Update game object position
+        // Update game object position and ui elements
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
                 arrow: this.userInput.direction,
                 map: this.map
+            });
+        })
+        Object.values(this.map.uiElements).forEach(element => {
+            element.update({
+                player: this.cameraPerson
             });
         })
 
@@ -41,6 +48,7 @@ class Game {
                 object.sprite.draw(this.cameraPerson, "lower");
             }
         })
+
         // Draw player
         Object.values(this.map.gameObjects).forEach(object => {
             if (object.isPlayerControlled === true) {
@@ -74,5 +82,9 @@ class Game {
             }
         })
 
+        //Draw Static UI Elements
+        Object.values(this.map.uiElements).forEach(element => {
+            element.sprite.draw();
+        })
 }
 }

@@ -1,9 +1,9 @@
-class WaterInteraction extends Interaction {
+class DispenseInteraction extends Interaction {
     constructor(config) {
         super(config),
         this.sprite = new Sprite({
-            spriteSheet: "../assets/interactions/water_anim_16x32.png",
-            spriteData: "../assets/interactions/water_anim_16x32.json",
+            spriteSheet: "../assets/interactions/default_anim_32x32.png",
+            spriteData: "../assets/interactions/default_anim_32x32.json",
             offsetX: config.spriteOffsetX,
             offsetY: config.spriteOffsetY,
             isVisible: config.spriteIsVisible,
@@ -19,15 +19,13 @@ class WaterInteraction extends Interaction {
     }
 
     activate(state) {
-        this.sprite.currentAnimation = "idle";
+        this.sprite.currentAnimation = "standard";
         this.sprite.draw(state.cameraPerson);
     }
 
     trigger(player) {
-        if (this.gameObject.thirst > 0 & this.gameObject.isAlive) {
-            this.gameObject.thirst--;
-            player.carriedWater--;
-            this.gameObject.updateSprite();
+        if (player.carriedWater < 20) {
+            player.carriedWater = 20;
         }
     }
 }

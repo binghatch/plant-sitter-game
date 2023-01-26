@@ -1,6 +1,7 @@
 class GameMap {
     constructor(config) {
         this.gameObjects = config.gameObjects,
+        this.uiElements = config.uiElements,
 
         this.walls = config.walls,
         this.interactions = config.interactions,
@@ -66,6 +67,24 @@ window.GameMaps = {
     Office: {
         lowerSrc: "../assets/maps/office-lower.png",
         upperSrc: "../assets/maps/office-upper.png",
+        uiElements: {
+            waterBar: new UiWaterBar({
+                x: utils.withGrid(19),
+                y: utils.withGrid(1),
+                sprite: {
+                    spriteSheet: "../assets/ui/waterBar_anim_48x16.png",
+                    spriteData: "../assets/ui/waterBar_anim_48x18.json"
+                }
+            }),
+            dayDisplay: new UiDayDisplay({
+                x: utils.withGrid(19),
+                y: utils.withGrid(1),
+                sprite: {
+                    spriteSheet: "../assets/ui/waterBar_anim_48x16.png",
+                    spriteData: "../assets/ui/waterBar_anim_48x18.json"
+                }
+            })
+        },
         gameObjects: {
             vendingMachine: new UsableObject({
                 x: utils.withGrid(11),
@@ -93,7 +112,7 @@ window.GameMaps = {
                     }
                 ]
             }),
-            waterDispenser: new UsableObject({
+            waterDispenser: new WaterDispenser({
                 x: utils.withGrid(2),
                 y: utils.withGrid(5),
                 sprite: {
@@ -102,12 +121,14 @@ window.GameMaps = {
                     useShadow: false
                 },
                 interaction: {
-                        x: utils.withGrid(0),
-                        y: utils.withGrid(2),
-                        type: "activate",
-                        spriteOffsetX: -8,
-                        spriteOffsetY: -22
-                    },
+                    x: utils.withGrid(0),
+                    y: utils.withGrid(2),
+                    accessibleFrom: "up",
+                    type: "dispense",
+                    spriteOffsetX: -1,
+                    spriteOffsetY: -16,
+                    spriteIsVisible: false
+                },
                 walls: [
                     {
                         x: utils.withGrid(0),
@@ -117,6 +138,30 @@ window.GameMaps = {
             }),
             plant: new Plant({
                 x: utils.withGrid(5),
+                y: utils.withGrid(5),
+                sprite: {
+                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    useShadow: false
+                },
+                interaction: {
+                    x: utils.withGrid(0),
+                    y: utils.withGrid(2),
+                    accessibleFrom: "up",
+                    type: "water",
+                    spriteOffsetX: -1,
+                    spriteOffsetY: -16,
+                    spriteIsVisible: false
+                },
+                walls: [
+                    {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(1)
+                    }
+                ]
+            }),
+            plant2: new Plant({
+                x: utils.withGrid(7),
                 y: utils.withGrid(5),
                 sprite: {
                     spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
@@ -139,9 +184,9 @@ window.GameMaps = {
                     }
                 ]
             }),
-            plant2: new Plant({
+            plant3: new Plant({
                 x: utils.withGrid(7),
-                y: utils.withGrid(5),
+                y: utils.withGrid(3),
                 sprite: {
                     spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
                     spriteData: "../assets/objects/plants/plant_01_16x32.json",

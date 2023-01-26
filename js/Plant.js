@@ -21,10 +21,14 @@ class Plant extends UsableObject {
         })
 
         // Decay happens every this.decayDelay frames
-        this.decayDelay = config.decayDelay || 50
+        this.decayDelay = config.decayDelay || 200
     }  
 
     update(state) {
+        if (!this.isAlive) {
+            return;
+        }
+        
         if (this.thirst > 5 && this.isAlive) {
             this.interaction.sprite.isVisible = true;
         } else {
@@ -45,7 +49,7 @@ class Plant extends UsableObject {
         // Update sprite on every second thirst
         if (frameCount % this.decayDelay === 0 && this.thirst < 10 && this.isAlive) {
             this.updateSprite();
-            this.sprite.currentAnimationFrame = this.thirst;
+            // this.sprite.currentAnimationFrame = this.thirst;
         }
 
     }
@@ -64,6 +68,7 @@ class Plant extends UsableObject {
     updateSprite() {
         if (this.isAlive) {
             this.sprite.currentAnimation = "standard";
+            this.sprite.currentAnimationFrame = this.thirst;
         } else {
             this.sprite.animationSpeed = 10;
             this.sprite.currentAnimation = "dead";

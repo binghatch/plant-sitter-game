@@ -14,7 +14,7 @@ class Person extends GameObject {
 
         this.availableInteraction;
 
-        this.carriedWater = 0;
+        this.carriedWater = 20;
 
         // Health
         //this.thirst = 0;
@@ -48,7 +48,6 @@ class Person extends GameObject {
     updateSprite() {
         if (this.movingProgressRemaining > 0) {
             this.sprite.currentAnimation = "run" + this.direction[0].toUpperCase() + this.direction.substring(1);
-            console.log(this.sprite.currentAnimation);
         } else if (this.movingProgressRemaining === 0) {
             this.sprite.currentAnimation = "idle" + this.direction[0].toUpperCase() + this.direction.substring(1);
         }
@@ -76,9 +75,14 @@ class Person extends GameObject {
     }
 
     handleInteraction(state) {
-        if (this.availableInteraction && state.interaction && state.interaction === this.availableInteraction.type) {
-            console.log(this.availableInteraction);
-            this.availableInteraction.trigger();    
+        if (this.availableInteraction && state.interaction && state.interaction === this.availableInteraction.type) {        
+            if (this.availableInteraction.type === "water" && this.carriedWater > 0) {
+                this.availableInteraction.trigger(this);
+            }
+
+            if (this.availableInteraction.type === "dispense" && this.carriedWater < 20) {
+                this.availableInteraction.trigger(this);
+            }
         }
     }
 }

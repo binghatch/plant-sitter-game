@@ -12,7 +12,7 @@ body {
 }
 
 canvas {
-  background-color: black;
+  background-color: lightslategrey;
   display: block;
   transform: scale(3);
   image-rendering: pixelated;
