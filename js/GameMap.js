@@ -50,7 +50,6 @@ class GameMap {
 
     addInteraction(interaction) {
         const {relativeX, relativeY} = utils.relativePosition(interaction.x, interaction.y, interaction.gameObject);
-        console.log(relativeX);
         this.interactions[utils.asGridCoord(utils.pixelsToCoord(relativeX), utils.pixelsToCoord(relativeY))] = {
             type: interaction.type,
             interaction: interaction,
@@ -79,7 +78,9 @@ window.GameMaps = {
                 interaction: {
                         x: utils.withGrid(1),
                         y: utils.withGrid(2),
-                        type: "activate"
+                        type: "activate",
+                        spriteOffsetX: -0,
+                        spriteOffsetY: -22
                     },
                 walls: [
                     {
@@ -92,6 +93,51 @@ window.GameMaps = {
                     }
                 ]
             }),
+            waterDispenser: new UsableObject({
+                x: utils.withGrid(2),
+                y: utils.withGrid(5),
+                sprite: {
+                    spriteSheet: "../assets/objects/Sprite-0010.png",
+                    spriteData: "../assets/objects/Sprite-0010.json",
+                    useShadow: false
+                },
+                interaction: {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(2),
+                        type: "activate",
+                        spriteOffsetX: -8,
+                        spriteOffsetY: -22
+                    },
+                walls: [
+                    {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(1)
+                    }
+                ]
+            }),
+            plant: new Plant({
+                x: utils.withGrid(5),
+                y: utils.withGrid(5),
+                sprite: {
+                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    useShadow: false
+                },
+                interaction: {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(2),
+                        type: "activate",
+                        spriteOffsetX: -1,
+                        spriteOffsetY: -16,
+                        spriteIsVisible: false
+                    },
+                walls: [
+                    {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(1)
+                    }
+                ]
+            }),
             hero: new Person({
                 x: utils.withGrid(2),
                 y: utils.withGrid(4),
@@ -99,8 +145,8 @@ window.GameMaps = {
                     spriteSheet: "../assets/characters/Bob_anim_32x32.png",
                     spriteData: "../assets/characters/Bob_anim_32x32.json",
                     useShadow: true,
-                    offsetX: 8,
-                    offsetY: 18
+                    offsetX: -8,
+                    offsetY: -18
                 },
                 isPlayerControlled: true
             })
@@ -197,9 +243,6 @@ window.GameMaps = {
             "12, 11": true,
             "13, 11": true,
             "14, 11": true,
-
-            // Plants
-            "5, 6": true
         }
     }
 }

@@ -27,6 +27,7 @@ class Game {
         // Update game object position
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
+                interaction: this.userInput.interaction,
                 arrow: this.userInput.direction,
                 map: this.map
             });
@@ -63,6 +64,7 @@ class Game {
         Object.values(this.map.gameObjects).forEach(object => {
             if (object.isPlayerControlled === true) {
                 object.trigger({
+                    arrow: this.userInput.direction,
                     map: this.map,
                     cameraPerson: this.cameraPerson
                 });

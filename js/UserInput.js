@@ -1,11 +1,17 @@
 class UserInput {
     constructor() {
-        this.keysPressed = [];
+        this.keysPressed = [],
+        this.userHasInteracted = false,
         this.keyMapping = {
-            38: "up",
-            40: "down",
-            37: "left",
-            39: "right"
+            "directional": {
+                38: "up",
+                40: "down",
+                37: "left",
+                39: "right"
+            },
+            "interactional": {
+                32: "interact"
+            }
         }
     }
 
@@ -13,10 +19,22 @@ class UserInput {
         return this.keysPressed[0];
     }
 
+    get interaction() {
+        return this.userHasInteracted;
+    }
+
     keyPressed(keyCode) {
-        if (keyCode in this.keyMapping) {
-            const dir = this.keyMapping[keyCode];
+        // Handle directional input
+        if (keyCode in this.keyMapping.directional) {
+            const dir = this.keyMapping.directional[keyCode];
             this.keysPressed.unshift(dir);
+        }
+
+        // Handle interactional input
+        if (keyCode in this.keyMapping.interactional) {
+            this.userHasInteracted = true;
+            console.log("interaction");
+            console.log(this.userHasInteracted);
         }
     }
 
@@ -24,4 +42,5 @@ class UserInput {
         const keyCodeIndex = this.keysPressed.indexOf(this.keyMapping[keyCode]);
         this.keysPressed.splice(keyCodeIndex, 1);
     }
+
 }

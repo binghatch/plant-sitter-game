@@ -5,16 +5,17 @@ class UsableObject extends GameObject {
             x: config.interaction.x,
             y: config.interaction.y,
             type: config.interaction.type,
+            spriteOffsetX: config.interaction.spriteOffsetX,
+            spriteOffsetY: config.interaction.spriteOffsetY,
             gameObject: this
         })
     }
 
     update(state) {
-        // this.interaction.draw();
         this.updateSprite();
     }
 
     updateSprite() {
-        this.sprite.currentAnimation = "deactivated";
+        this.sprite.currentAnimation = "standard";
     }
 }

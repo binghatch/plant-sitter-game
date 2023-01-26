@@ -10,6 +10,7 @@ class GameObject {
             spriteData: config.sprite.spriteData || "../assets/characters/Bob_anim_32x32.json",
             offsetX: config.sprite.offsetX || 0,
             offsetY: config.sprite.offsetY || 0,
+            isVisible: config.spriteIsVisible || true,
             useShadow: config.sprite.useShadow,
         }),
         this.isPlayerControlled = config.isPlayerControlled || false,
@@ -25,12 +26,10 @@ class GameObject {
         if (this.walls) {
             this.walls.forEach(wall => {
                 map.addWall(utils.pixelsToCoord(this.x + wall.x), utils.pixelsToCoord(this.y + wall.y));
-                console.log(wall);
             })
         }
         if (this.interaction) {
             map.addInteraction(this.interaction);
-            console.log(map.interactions);
         }
 
     }

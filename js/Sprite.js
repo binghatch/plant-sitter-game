@@ -4,6 +4,7 @@ class Sprite {
         this.spriteSheet = config.spriteSheet,
         this.spriteData = config.spriteData,
         this.image,
+        this.isVisible = config.isVisible,
 
         // Sprite Offset
         this.offsetX = config.offsetX,
@@ -40,7 +41,7 @@ class Sprite {
                 [0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7]
             ]
         },
-        this.currentAnimation = config.currentAnimation || "idleRight",
+        this.currentAnimation = config.currentAnimation || "standard",
         this.currentAnimationFrame = 0,
         this.animationSpeed = 10;
 
@@ -57,12 +58,16 @@ class Sprite {
     }
 
     draw(cameraPerson, layer) {
+        if (!this.isVisible) {
+            return;
+        }
+
         const x = this.gameObject.x + utils.withGrid(11) - cameraPerson.x;
         const y = this.gameObject.y + utils.withGrid(6) - cameraPerson.y;
 
         // Draw Shadow
         if (this.useShadow) {
-            image(this.shadow, x - this.offsetX, y - this.offsetY);
+            image(this.shadow, x + this.offsetX, y + this.offsetY);
         }
 
         // Animate Sprite
@@ -81,7 +86,7 @@ class Sprite {
         let layerOffset;
         (layer === "lower") ? layerOffset = frames[this.currentAnimationFrame]["upper"].h : layerOffset = 0;  
         
-        image(currentImage, x - this.offsetX, y - this.offsetY + layerOffset);
+        image(currentImage, x + this.offsetX, y + this.offsetY + layerOffset);
 
         // Set Animation Speed
         if (frameCount % this.animationSpeed === 0) {
