@@ -126,7 +126,32 @@ window.GameMaps = {
                 interaction: {
                         x: utils.withGrid(0),
                         y: utils.withGrid(2),
-                        type: "activate",
+                        accessibleFrom: "up",
+                        type: "water",
+                        spriteOffsetX: -1,
+                        spriteOffsetY: -16,
+                        spriteIsVisible: false
+                    },
+                walls: [
+                    {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(1)
+                    }
+                ]
+            }),
+            plant2: new Plant({
+                x: utils.withGrid(7),
+                y: utils.withGrid(5),
+                sprite: {
+                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    useShadow: false
+                },
+                interaction: {
+                        x: utils.withGrid(0),
+                        y: utils.withGrid(2),
+                        accessibleFrom: "up",
+                        type: "water",
                         spriteOffsetX: -1,
                         spriteOffsetY: -16,
                         spriteIsVisible: false

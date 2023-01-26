@@ -13,6 +13,7 @@ class Plant extends UsableObject {
             x: config.interaction.x,
             y: config.interaction.y,
             type: config.interaction.type,
+            accessibleFrom: config.interaction.accessibleFrom,
             spriteOffsetX: config.interaction.spriteOffsetX,
             spriteOffsetY: config.interaction.spriteOffsetY,
             spriteIsVisible: config.spriteIsVisible,
@@ -24,8 +25,10 @@ class Plant extends UsableObject {
     }  
 
     update(state) {
-        if (this.thirst > 5) {
+        if (this.thirst > 5 && this.isAlive) {
             this.interaction.sprite.isVisible = true;
+        } else {
+            this.interaction.sprite.isVisible = false;
         }
         if (this.thirst === 10) {
             this.isAlive = false;
@@ -40,25 +43,23 @@ class Plant extends UsableObject {
         }
 
         // Update sprite on every second thirst
-        if (frameCount % this.decayDelay === 0 && this.thirst < 10) {
+        if (frameCount % this.decayDelay === 0 && this.thirst < 10 && this.isAlive) {
             this.updateSprite();
-            this.sprite.currentAnimationFrame++;
+            this.sprite.currentAnimationFrame = this.thirst;
         }
 
-        // Water plant
-        if (state.interaction === true) {
-            console.log("interacted");
-            this.water();
-        }
     }
 
     decay() {
         this.thirst++;
     }
 
-    water() {
-        this.thirst--;
-    }
+    // water() {
+    //     if (this.thirst > 0) {
+    //         console.log(this.thirst);
+    //         this.thirst--;
+    //     }
+    // }
 
     updateSprite() {
         if (this.isAlive) {

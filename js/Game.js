@@ -27,7 +27,6 @@ class Game {
         // Update game object position
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
-                interaction: this.userInput.interaction,
                 arrow: this.userInput.direction,
                 map: this.map
             });
@@ -60,15 +59,20 @@ class Game {
             }
         })
 
-        // Draw UI
+        // Activate Interaction, Draw UI and handle user interaction
         Object.values(this.map.gameObjects).forEach(object => {
             if (object.isPlayerControlled === true) {
-                object.trigger({
+                object.checkInteraction({
                     arrow: this.userInput.direction,
                     map: this.map,
                     cameraPerson: this.cameraPerson
                 });
+                object.handleInteraction({
+                    interaction: this.userInput.interaction,
+                });
+                this.userInput.interactionTyped = null;
             }
         })
-    }
+
+}
 }

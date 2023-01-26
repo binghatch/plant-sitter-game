@@ -20,4 +20,10 @@ class WaterInteraction extends Interaction {
         this.sprite.currentAnimation = "idle";
         this.sprite.draw(state.cameraPerson);
     }
+
+    trigger() {
+        if (this.gameObject.thirst > 0 & this.gameObject.isAlive) {
+            this.gameObject.thirst--;
+        }
+    }
 }

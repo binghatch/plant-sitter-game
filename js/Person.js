@@ -10,7 +10,11 @@ class Person extends GameObject {
             "down": ["y", 1],
             "left": ["x", -1],
             "right": ["x", 1],
-        }
+        },
+
+        this.availableInteraction;
+
+        this.carriedWater = 0;
 
         // Health
         //this.thirst = 0;
@@ -29,7 +33,7 @@ class Person extends GameObject {
         
         this.updateSprite();
         this.updatePosition();
-        //this.getThirsty();
+        // this.getThirsty();
     }
 
 
@@ -57,12 +61,24 @@ class Person extends GameObject {
     //     }
     // }
 
-    trigger(state) {
+    checkInteraction(state) {
         // Trigger UI Drawing
-        if (this.movingProgressRemaining === 0 && state.map.isInteractiveTile(utils.pixelsToCoord(this.x), utils.pixelsToCoord(this.y)) && this.direction === "up") {
+        if (this.movingProgressRemaining === 0 && state.map.isInteractiveTile(utils.pixelsToCoord(this.x), utils.pixelsToCoord(this.y))) {
             const x = utils.pixelsToCoord(this.x);
             const y = utils.pixelsToCoord(this.y);
-            state.map.interactions[utils.asGridCoord(x, y)].interaction.activate(state);
+            this.availableInteraction = state.map.interactions[utils.asGridCoord(x, y)].interaction;
+            if (this.direction === this.availableInteraction.accessibleFrom) {
+                state.map.interactions[utils.asGridCoord(x, y)].interaction.activate(state);
+            }
+        } else {
+            this.availableInteraction = null;
+        }
+    }
+
+    handleInteraction(state) {
+        if (this.availableInteraction && state.interaction && state.interaction === this.availableInteraction.type) {
+            console.log(this.availableInteraction);
+            this.availableInteraction.trigger();    
         }
     }
 }
