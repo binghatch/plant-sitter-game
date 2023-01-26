@@ -12,18 +12,20 @@ class Person extends GameObject {
             "right": ["x", 1],
         },
 
-        this.availableInteraction;
+        // this.sound = new Sound({
+        //     soundSrc: config.soundSrc
+        // }),
 
-        this.carriedWater = 20;
+        this.availableInteraction,
 
-        // Health
-        //this.thirst = 0;
+        this.carriedWater = 20
 
     }
 
     update(state) {
         if (state.arrow && this.movingProgressRemaining === 0) {
             if (!state.map.isSpaceTaken(this.x, this.y, state.arrow)) {
+                //this.sound.stop();
                 this.direction = state.arrow;
                 this.movingProgressRemaining = 16;
             } else {
@@ -33,7 +35,6 @@ class Person extends GameObject {
         
         this.updateSprite();
         this.updatePosition();
-        // this.getThirsty();
     }
 
 
@@ -42,8 +43,8 @@ class Person extends GameObject {
             const [axis, change] = this.directionUpdate[this.direction];
             this[axis] += change;
             this.movingProgressRemaining--;
+            //this.sound.trigger();
         }
-        this.sprite.update();
     }
 
     updateSprite() {
@@ -53,13 +54,6 @@ class Person extends GameObject {
             this.sprite.currentAnimation = "idle" + this.direction[0].toUpperCase() + this.direction.substring(1);
         }
     }
-
-    // getThirsty() {
-    //     if (frameCount % 1000 === 0) {
-    //         this.thirst++;
-    //         console.log(this.thirst);
-    //     }
-    // }
 
     checkInteraction(state) {
         // Trigger UI Drawing
@@ -76,7 +70,7 @@ class Person extends GameObject {
     }
 
     handleInteraction(state) {
-        if (this.availableInteraction && state.interaction && state.interaction === this.availableInteraction.type) {        
+        if (this.availableInteraction && state.interaction && state.interaction === this.availableInteraction.type && this.direction === this.availableInteraction.accessibleFrom) {        
             if (this.availableInteraction.type === "water" && this.carriedWater > 0) {
                 this.availableInteraction.trigger(this);
             }

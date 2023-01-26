@@ -9,6 +9,9 @@ class GameMap {
         this.lowerSrc = config.lowerSrc,
         this.lowerImage = null,
 
+        this.musicSrc = config.musicSrc,
+        this.music = null,
+
         this.upperSrc = config.upperSrc,
         this.upperImage = null
     }
@@ -16,6 +19,7 @@ class GameMap {
     preload() {
         this.lowerImage = loadImage(this.lowerSrc);
         this.upperImage = loadImage(this.upperSrc);
+        // this.music = loadSound(this.music);
     }
 
     drawLowerImage(cameraPerson) {
@@ -67,6 +71,7 @@ window.GameMaps = {
     Office: {
         lowerSrc: "../assets/maps/office-lower.png",
         upperSrc: "../assets/maps/office-upper.png",
+        musicSrc: "../assets/music/",
         uiElements: {
             waterBar: new UiWaterBar({
                 x: utils.withGrid(19),
@@ -78,40 +83,14 @@ window.GameMaps = {
             }),
             dayDisplay: new UiDayDisplay({
                 x: utils.withGrid(19),
-                y: utils.withGrid(1),
+                y: utils.withGrid(0 ),
                 sprite: {
-                    spriteSheet: "../assets/ui/waterBar_anim_48x16.png",
+                    spriteSheet: "../assets/ui/dayDisplay_anim_48x16.png",
                     spriteData: "../assets/ui/waterBar_anim_48x18.json"
                 }
             })
         },
         gameObjects: {
-            vendingMachine: new UsableObject({
-                x: utils.withGrid(11),
-                y: utils.withGrid(5),
-                sprite: {
-                    spriteSheet: "../assets/objects/vending_machine_32x48.png",
-                    spriteData: "../assets/objects/vending_machine_32x48.json",
-                    useShadow: false
-                },
-                interaction: {
-                        x: utils.withGrid(1),
-                        y: utils.withGrid(2),
-                        type: "activate",
-                        spriteOffsetX: -0,
-                        spriteOffsetY: -22
-                    },
-                walls: [
-                    {
-                        x: utils.withGrid(0),
-                        y: utils.withGrid(1)
-                    },
-                    {
-                        x: utils.withGrid(1),
-                        y: utils.withGrid(1)
-                    }
-                ]
-            }),
             waterDispenser: new WaterDispenser({
                 x: utils.withGrid(2),
                 y: utils.withGrid(5),
@@ -127,7 +106,8 @@ window.GameMaps = {
                     type: "dispense",
                     spriteOffsetX: -1,
                     spriteOffsetY: -16,
-                    spriteIsVisible: false
+                    spriteIsVisible: true,
+                    soundSrc: "../assets/sounds/Drink.wav"
                 },
                 walls: [
                     {
@@ -151,7 +131,7 @@ window.GameMaps = {
                     type: "water",
                     spriteOffsetX: -1,
                     spriteOffsetY: -16,
-                    spriteIsVisible: false
+                    spriteIsVisible: false,
                 },
                 walls: [
                     {
@@ -218,6 +198,7 @@ window.GameMaps = {
                     offsetX: -8,
                     offsetY: -18
                 },
+                soundSrc: "../assets/sounds/Steps.wav",
                 isPlayerControlled: true
             })
         },

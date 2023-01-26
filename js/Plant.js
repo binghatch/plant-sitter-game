@@ -17,6 +17,7 @@ class Plant extends UsableObject {
             spriteOffsetX: config.interaction.spriteOffsetX,
             spriteOffsetY: config.interaction.spriteOffsetY,
             spriteIsVisible: config.spriteIsVisible,
+            soundSrc: "../assets/sounds/Water_Splash.wav",
             gameObject: this,
         })
 
@@ -38,6 +39,7 @@ class Plant extends UsableObject {
             this.isAlive = false;
             this.interaction.sprite.isVisible = false;
             this.updateSprite();
+            game.endGame(state);
             console.log("Plant died!")
         }
 
@@ -51,8 +53,6 @@ class Plant extends UsableObject {
             this.updateSprite();
             // this.sprite.currentAnimationFrame = this.thirst;
         }
-
-        this.sprite.update();
     }
 
     decay() {

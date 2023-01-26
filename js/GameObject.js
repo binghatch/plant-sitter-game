@@ -20,7 +20,8 @@ class GameObject {
     }
 
     preload() {
-        this.sprite.preload();
+        this.sprite && this.sprite.preload();
+        this.sound && this.sound.preload();
     }
 
     mount(map) {

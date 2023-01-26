@@ -3,7 +3,12 @@ class Game {
         this.map = new GameMap(window.GameMaps.Office),
         this.userInput,
         this.cameraPerson = this.map.gameObjects.hero,
-        this.staticObjects
+        this.staticObjects,
+        this.gameOver = false,
+        this.music = {
+            inGame: null,
+            gameOver: null,
+        }
     }
 
     preload() {
@@ -17,11 +22,18 @@ class Game {
         Object.values(this.map.uiElements).forEach(element => {
             element.preload();
         })
+
+        this.music.inGame = loadSound("../assets/music/in_game.wav")
+        this.music.inGame.setVolume(0.4);
+        this.music.gameOver = loadSound("../assets/music/game_over.wav");
+        this.music.gameOver.setVolume(0.4);
     }
 
     setup() {
         this.userInput = new UserInput()
         this.map.mountObjects();
+
+        this.music.inGame.loop();
 
         // Store static Objects in variable
         this.staticObjects = Object.values(this.map.gameObjects).filter(object => !object.isPlayerControlled);
@@ -30,13 +42,29 @@ class Game {
     draw() {
         clear();
 
+        if (this.gameOver) {
+            this.music.inGame.stop();
+            this.music.gameOver.loop();
+            background(255, 0, 0);
+            textAlign(CENTER);
+            textSize(20);
+            fill(255);
+            text("GAME OVER", 176, 99);
+            noLoop();
+            return;
+        }
+
         // Update game object position and ui elements
         Object.values(this.map.gameObjects).forEach(object => {
             object.update({
                 arrow: this.userInput.direction,
-                map: this.map
+                map: this.map,
+                game: this
             });
         })
+
+
+
         Object.values(this.map.uiElements).forEach(element => {
             element.update({
                 player: this.cameraPerson
@@ -77,5 +105,9 @@ class Game {
         Object.values(this.map.uiElements).forEach(element => {
             element.sprite.draw();
         })
-}
+    }
+
+    endGame() {
+        this.gameOver = true;
+    }
 }

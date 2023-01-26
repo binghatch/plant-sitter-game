@@ -17,6 +17,5 @@ class UsableObject extends GameObject {
 
     updateSprite() {
         this.sprite.currentAnimation = "standard";
-        this.sprite.update();
     }
 }

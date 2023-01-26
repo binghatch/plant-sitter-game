@@ -14,18 +14,15 @@ class DispenseInteraction extends Interaction {
         })
     }
 
-    preload() {
-        this.sprite.preload();
-    }
-
     activate(state) {
-        this.sprite.currentAnimation = "standard";
+        this.sprite.currentAnimation = "idle";
         this.sprite.draw(state.cameraPerson);
     }
 
     trigger(player) {
         if (player.carriedWater < 20) {
             player.carriedWater = 20;
+            this.sound.trigger();
         }
     }
 }
