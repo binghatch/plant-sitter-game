@@ -266,7 +266,7 @@ window.GameMaps = {
                 y: utils.withGrid(10),
                 sprite: {
                     spriteSheet: "./assets/characters/Bob_anim_32x32.png",
-                    spriteData: "./assets/characters/Bob_anim_32x32.json",
+                    spriteData: "../assets/characters/Bob_anim_32x32.json",
                     useShadow: true,
                     offsetX: -8,
                     offsetY: -18
