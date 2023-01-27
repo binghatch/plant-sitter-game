@@ -1,2 +1,2 @@
-# After Hours
-A game about staying too late at the office.
+# Plant Sitter
+A game about being responsible for other people's plants.
