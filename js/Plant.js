@@ -17,7 +17,7 @@ class Plant extends UsableObject {
             spriteOffsetX: config.interaction.spriteOffsetX,
             spriteOffsetY: config.interaction.spriteOffsetY,
             spriteIsVisible: config.spriteIsVisible,
-            soundSrc: "../assets/sounds/Water_Splash.wav",
+            soundSrc: "./assets/sounds/Water_Splash.wav",
             gameObject: this,
         })
 

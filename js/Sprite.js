@@ -53,7 +53,7 @@ class Sprite {
         this.spriteData = loadJSON(this.spriteData);
 
         if (this.useShadow) {
-            this.shadow = loadImage("../assets/characters/shadow.png");
+            this.shadow = loadImage("./assets/characters/shadow.png");
         }
     }
 

@@ -1,6 +1,6 @@
 class Sound {
     constructor(config) {
-        this.soundSrc = config.soundSrc || "../assets/sounds/Water_Splash.wav",
+        this.soundSrc = config.soundSrc || "./assets/sounds/Water_Splash.wav",
         this.sound = null
     }
 

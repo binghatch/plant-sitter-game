@@ -6,8 +6,8 @@ class GameObject {
         this.direction = config.direction || "down",
         this.sprite = new Sprite({
             gameObject: this,
-            spriteSheet: config.sprite.spriteSheet || "../assets/characters/Bob_anim_32x32.png",
-            spriteData: config.sprite.spriteData || "../assets/characters/Bob_anim_32x32.json",
+            spriteSheet: config.sprite.spriteSheet || "./assets/characters/Bob_anim_32x32.png",
+            spriteData: config.sprite.spriteData || "./assets/characters/Bob_anim_32x32.json",
             offsetX: config.sprite.offsetX || 0,
             offsetY: config.sprite.offsetY || 0,
             isVisible: config.spriteIsVisible || true,

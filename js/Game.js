@@ -29,14 +29,14 @@ class Game {
         })
 
         // Load Font
-        this.font = loadFont("../assets/ui/font/mago2.ttf")
+        this.font = loadFont("./assets/ui/font/mago2.ttf")
 
         // Load Game Music
-        this.music.inGame = loadSound("../assets/music/in_game.wav")
+        this.music.inGame = loadSound("./assets/music/in_game.wav")
         this.music.inGame.setVolume(0.4);
-        this.music.gameLost = loadSound("../assets/music/game_over.wav");
+        this.music.gameLost = loadSound("./assets/music/game_over.wav");
         this.music.gameLost.setVolume(0.4);
-        this.music.gameWon = loadSound("../assets/music/game_won.wav");
+        this.music.gameWon = loadSound("./assets/music/game_won.wav");
         this.music.gameWon.setVolume(0.4);
     }
 

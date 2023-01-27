@@ -14,7 +14,7 @@ class WaterDispenser extends UsableObject {
             spriteOffsetX: config.interaction.spriteOffsetX,
             spriteOffsetY: config.interaction.spriteOffsetY,
             spriteIsVisible: config.spriteIsVisible,
-            soundSrc: "../assets/sounds/Drink.wav",
+            soundSrc: "./assets/sounds/Drink.wav",
             gameObject: this,
         })
     }  

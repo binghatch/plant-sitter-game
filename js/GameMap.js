@@ -69,24 +69,24 @@ class GameMap {
 
 window.GameMaps = {
     Office: {
-        lowerSrc: "../assets/maps/office-lower.png",
-        upperSrc: "../assets/maps/office-upper.png",
-        musicSrc: "../assets/music/",
+        lowerSrc: "./assets/maps/office-lower.png",
+        upperSrc: "./assets/maps/office-upper.png",
+        musicSrc: "./assets/music/",
         uiElements: {
             waterBar: new UiWaterBar({
                 x: utils.withGrid(19),
                 y: utils.withGrid(1),
                 sprite: {
-                    spriteSheet: "../assets/ui/waterBar_anim_48x16.png",
-                    spriteData: "../assets/ui/waterBar_anim_48x18.json"
+                    spriteSheet: "./assets/ui/waterBar_anim_48x16.png",
+                    spriteData: "./assets/ui/waterBar_anim_48x18.json"
                 }
             }),
             dayDisplay: new UiDayDisplay({
                 x: utils.withGrid(19),
                 y: utils.withGrid(0 ),
                 sprite: {
-                    spriteSheet: "../assets/ui/dayDisplay_anim_48x16.png",
-                    spriteData: "../assets/ui/waterBar_anim_48x18.json"
+                    spriteSheet: "./assets/ui/dayDisplay_anim_48x16.png",
+                    spriteData: "./assets/ui/waterBar_anim_48x18.json"
                 }
             })
         },
@@ -95,8 +95,8 @@ window.GameMaps = {
                 x: utils.withGrid(7),
                 y: utils.withGrid(8),
                 sprite: {
-                    spriteSheet: "../assets/objects/Sprite-0010.png",
-                    spriteData: "../assets/objects/Sprite-0010.json",
+                    spriteSheet: "./assets/objects/Sprite-0010.png",
+                    spriteData: "./assets/objects/Sprite-0010.json",
                     useShadow: false
                 },
                 interaction: {
@@ -107,7 +107,7 @@ window.GameMaps = {
                     spriteOffsetX: -1,
                     spriteOffsetY: -16,
                     spriteIsVisible: true,
-                    soundSrc: "../assets/sounds/Drink.wav"
+                    soundSrc: "./assets/sounds/Drink.wav"
                 },
                 walls: [
                     {
@@ -120,8 +120,8 @@ window.GameMaps = {
                 x: utils.withGrid(22),
                 y: utils.withGrid(16),
                 sprite: {
-                    spriteSheet: "../assets/objects/Sprite-0010.png",
-                    spriteData: "../assets/objects/Sprite-0010.json",
+                    spriteSheet: "./assets/objects/Sprite-0010.png",
+                    spriteData: "./assets/objects/Sprite-0010.json",
                     useShadow: false
                 },
                 interaction: {
@@ -132,7 +132,7 @@ window.GameMaps = {
                     spriteOffsetX: -1,
                     spriteOffsetY: -16,
                     spriteIsVisible: true,
-                    soundSrc: "../assets/sounds/Drink.wav"
+                    soundSrc: "./assets/sounds/Drink.wav"
                 },
                 walls: [
                     {
@@ -145,8 +145,8 @@ window.GameMaps = {
                 x: utils.withGrid(11),
                 y: utils.withGrid(2),
                 sprite: {
-                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
-                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    spriteSheet: "./assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "./assets/objects/plants/plant_01_16x32.json",
                     useShadow: false
                 },
                 interaction: {
@@ -169,8 +169,8 @@ window.GameMaps = {
                 x: utils.withGrid(12),
                 y: utils.withGrid(9),
                 sprite: {
-                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
-                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    spriteSheet: "./assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "./assets/objects/plants/plant_01_16x32.json",
                     useShadow: false
                 },
                 interaction: {
@@ -193,8 +193,8 @@ window.GameMaps = {
                 x: utils.withGrid(20),
                 y: utils.withGrid(7),
                 sprite: {
-                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
-                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    spriteSheet: "./assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "./assets/objects/plants/plant_01_16x32.json",
                     useShadow: false
                 },
                 interaction: {
@@ -217,8 +217,8 @@ window.GameMaps = {
                 x: utils.withGrid(17),
                 y: utils.withGrid(21),
                 sprite: {
-                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
-                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    spriteSheet: "./assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "./assets/objects/plants/plant_01_16x32.json",
                     useShadow: false
                 },
                 interaction: {
@@ -241,8 +241,8 @@ window.GameMaps = {
                 x: utils.withGrid(10),
                 y: utils.withGrid(6),
                 sprite: {
-                    spriteSheet: "../assets/objects/plants/plant_01_16x32.png",
-                    spriteData: "../assets/objects/plants/plant_01_16x32.json",
+                    spriteSheet: "./assets/objects/plants/plant_01_16x32.png",
+                    spriteData: "./assets/objects/plants/plant_01_16x32.json",
                     useShadow: false
                 },
                 interaction: {
@@ -265,13 +265,13 @@ window.GameMaps = {
                 x: utils.withGrid(3),
                 y: utils.withGrid(10),
                 sprite: {
-                    spriteSheet: "../assets/characters/Bob_anim_32x32.png",
-                    spriteData: "../assets/characters/Bob_anim_32x32.json",
+                    spriteSheet: "./assets/characters/Bob_anim_32x32.png",
+                    spriteData: "./assets/characters/Bob_anim_32x32.json",
                     useShadow: true,
                     offsetX: -8,
                     offsetY: -18
                 },
-                soundSrc: "../assets/sounds/Steps.wav",
+                soundSrc: "./assets/sounds/Steps.wav",
                 isPlayerControlled: true
             })
         },
