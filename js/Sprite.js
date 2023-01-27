@@ -42,8 +42,8 @@ class Sprite {
             ]
         },
         this.currentAnimation = config.currentAnimation || "standard",
-        this.currentAnimationFrame = 0,
-        this.animationSpeed = 10;
+        this.currentAnimationFrame = config.currentAnimationFrame || 0,
+        this.animationSpeed = config.animationSpeed;
 
         this.gameObject = config.gameObject
     }
@@ -62,8 +62,15 @@ class Sprite {
             return;
         }
 
-        const x = this.gameObject.x + utils.withGrid(11) - cameraPerson.x;
-        const y = this.gameObject.y + utils.withGrid(6) - cameraPerson.y;
+        let x;
+        let y;
+        if (this.gameObject.isAbsolute) {
+            x = this.gameObject.x;
+            y = this.gameObject.y;
+        } else {
+            x = this.gameObject.x + utils.withGrid(11) - cameraPerson.x;
+            y = this.gameObject.y + utils.withGrid(6) - cameraPerson.y;
+        }
 
         // Draw Shadow
         if (this.useShadow) {
@@ -89,8 +96,10 @@ class Sprite {
         image(currentImage, x + this.offsetX, y + this.offsetY + layerOffset);
 
         // Set Animation Speed
-        if (frameCount % this.animationSpeed === 0) {
+        if (this.animationSpeed > 0 && frameCount % this.animationSpeed === 0) {
             this.currentAnimationFrame++;
+        } else {
+            return;
         }
         
         // Reset Animation

@@ -13,24 +13,33 @@ class Plant extends UsableObject {
             x: config.interaction.x,
             y: config.interaction.y,
             type: config.interaction.type,
+            accessibleFrom: config.interaction.accessibleFrom,
             spriteOffsetX: config.interaction.spriteOffsetX,
             spriteOffsetY: config.interaction.spriteOffsetY,
             spriteIsVisible: config.spriteIsVisible,
+            soundSrc: "../assets/sounds/Water_Splash.wav",
             gameObject: this,
         })
 
         // Decay happens every this.decayDelay frames
-        this.decayDelay = config.decayDelay || 50
+        this.decayDelay = config.decayDelay || 200
     }  
 
     update(state) {
-        if (this.thirst > 5) {
+        if (!this.isAlive) {
+            return;
+        }
+        
+        if (this.thirst > 5 && this.isAlive) {
             this.interaction.sprite.isVisible = true;
+        } else {
+            this.interaction.sprite.isVisible = false;
         }
         if (this.thirst === 10) {
             this.isAlive = false;
             this.interaction.sprite.isVisible = false;
             this.updateSprite();
+            game.plantsAlive--;
             console.log("Plant died!")
         }
 
@@ -40,15 +49,9 @@ class Plant extends UsableObject {
         }
 
         // Update sprite on every second thirst
-        if (frameCount % this.decayDelay === 0 && this.thirst < 10) {
+        if (frameCount % this.decayDelay === 0 && this.thirst < 10 && this.isAlive) {
             this.updateSprite();
-            this.sprite.currentAnimationFrame++;
-        }
-
-        // Water plant
-        if (state.interaction === true) {
-            console.log("interacted");
-            this.water();
+            // this.sprite.currentAnimationFrame = this.thirst;
         }
     }
 
@@ -56,13 +59,17 @@ class Plant extends UsableObject {
         this.thirst++;
     }
 
-    water() {
-        this.thirst--;
-    }
+    // water() {
+    //     if (this.thirst > 0) {
+    //         console.log(this.thirst);
+    //         this.thirst--;
+    //     }
+    // }
 
     updateSprite() {
         if (this.isAlive) {
             this.sprite.currentAnimation = "standard";
+            this.sprite.currentAnimationFrame = this.thirst;
         } else {
             this.sprite.animationSpeed = 10;
             this.sprite.currentAnimation = "dead";

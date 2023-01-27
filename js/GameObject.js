@@ -11,6 +11,8 @@ class GameObject {
             offsetX: config.sprite.offsetX || 0,
             offsetY: config.sprite.offsetY || 0,
             isVisible: config.spriteIsVisible || true,
+            animationSpeed: 10,
+            currentAnimationFrame: 0,
             useShadow: config.sprite.useShadow,
         }),
         this.isPlayerControlled = config.isPlayerControlled || false,
@@ -18,7 +20,8 @@ class GameObject {
     }
 
     preload() {
-        this.sprite.preload();
+        this.sprite && this.sprite.preload();
+        this.sound && this.sound.preload();
     }
 
     mount(map) {
@@ -35,7 +38,7 @@ class GameObject {
     }
 
     update() {
-        
+        this.sprite.update();
     }
 
 }

@@ -21,3 +21,7 @@ function keyPressed() {
 function keyReleased() {
   game.userInput.keyReleased(keyCode);
 }
+
+function keyTyped() {
+  game.userInput.keyTyped(keyCode);
+}
