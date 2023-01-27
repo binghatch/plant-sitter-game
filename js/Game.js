@@ -4,11 +4,16 @@ class Game {
         this.userInput,
         this.cameraPerson = this.map.gameObjects.hero,
         this.staticObjects,
-        this.gameOver = false,
+        this.gameLost = false,
+        this.gameWon = false,
         this.music = {
             inGame: null,
-            gameOver: null,
+            gameLost: null,
+            gameWon: null
         }
+        this.plantsAlive,
+        this.dayDuration = 600,
+        this.day = 0
     }
 
     preload() {
@@ -23,36 +28,36 @@ class Game {
             element.preload();
         })
 
+        // Load Font
+        this.font = loadFont("../assets/ui/font/mago2.ttf")
+
+        // Load Game Music
         this.music.inGame = loadSound("../assets/music/in_game.wav")
         this.music.inGame.setVolume(0.4);
-        this.music.gameOver = loadSound("../assets/music/game_over.wav");
-        this.music.gameOver.setVolume(0.4);
+        this.music.gameLost = loadSound("../assets/music/game_over.wav");
+        this.music.gameLost.setVolume(0.4);
+        this.music.gameWon = loadSound("../assets/music/game_won.wav");
+        this.music.gameWon.setVolume(0.4);
     }
 
     setup() {
         this.userInput = new UserInput()
         this.map.mountObjects();
 
+        // Start Music
         this.music.inGame.loop();
 
         // Store static Objects in variable
         this.staticObjects = Object.values(this.map.gameObjects).filter(object => !object.isPlayerControlled);
+
+        // Set number of plants alive
+        this.plantsAlive = this.staticObjects.filter(plant => plant instanceof Plant).length
     }
 
     draw() {
         clear();
 
-        if (this.gameOver) {
-            this.music.inGame.stop();
-            this.music.gameOver.loop();
-            background(255, 0, 0);
-            textAlign(CENTER);
-            textSize(20);
-            fill(255);
-            text("GAME OVER", 176, 99);
-            noLoop();
-            return;
-        }
+        this.update();
 
         // Update game object position and ui elements
         Object.values(this.map.gameObjects).forEach(object => {
@@ -65,11 +70,9 @@ class Game {
 
 
 
-        Object.values(this.map.uiElements).forEach(element => {
-            element.update({
-                player: this.cameraPerson
-            });
-        })
+        this.map.uiElements["waterBar"].update({
+            player: this.cameraPerson
+        });
 
         // Draw lower map
         this.map.drawLowerImage(this.cameraPerson);
@@ -105,9 +108,61 @@ class Game {
         Object.values(this.map.uiElements).forEach(element => {
             element.sprite.draw();
         })
+
+        if (this.gameLost) {
+            this.music.inGame.stop();
+            this.music.gameLost.loop();
+            background(214, 47, 15);
+            textAlign(CENTER);
+            textFont(this.font);
+            textSize(60);
+            fill(255);
+            text("GAME OVER", 176, 99);
+            textSize(15);
+            text(`YOU KILLED ${5 - this.plantsAlive} PLANTS.`, 176, 120);
+            text("YOU MONSTER!", 176, 128);
+            noLoop();
+            return;
+        } else if (this.gameWon) {
+            this.music.inGame.stop();
+            this.music.gameWon.loop();
+            background(24, 143, 88);
+            filter(BLUR, 1)
+            textAlign(CENTER);
+            textFont(this.font);
+            textSize(60);
+            fill(255);
+            text("YOU WON", 176, 99);
+            textSize(15);
+            text(`YOU SAVED ${this.plantsAlive} PLANTS.`, 176, 120);
+            text("GOOD WORK!", 176, 128);
+            noLoop();
+            return;
+        }
     }
 
-    endGame() {
-        this.gameOver = true;
+    update() {
+        // Elapse day
+        if (frameCount % this.dayDuration === 0 && this.day < 6) {
+            this.map.uiElements["dayDisplay"].update();
+            this.day++;
+        }
+
+        if (this.day === 6) {
+            // End game if number of dead plants is more then half of the plants
+            if (this.plantsAlive < 4) {
+                this.endGame("lost");
+            } else {
+                this.endGame("won");
+            }
+        }
+    }
+
+    endGame(status) {
+        if (status === "lost") {
+            this.gameLost = true;
+        } else if (status === "won") {
+            this.gameWon = true;
+        }
     }
 }

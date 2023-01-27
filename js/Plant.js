@@ -39,7 +39,7 @@ class Plant extends UsableObject {
             this.isAlive = false;
             this.interaction.sprite.isVisible = false;
             this.updateSprite();
-            game.endGame(state);
+            game.plantsAlive--;
             console.log("Plant died!")
         }
 
